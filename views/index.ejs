@@ -3,7 +3,7 @@
 <%-include("partials/head.ejs")%>
 <body>
     <%-include("partials/navigation.ejs")%>
-    <div class="card">
+    <div class="card container">
         <div class="card-header">
             <h2>Agregar persona</h2>
         </div>
@@ -42,37 +42,40 @@
             </form>
         </div>
     </div>
-    <table class="table table-dark table-striped text-center">
-        <thead>
-            <tr>
-                <th scope="col">
-                    Cedula
-                </th>
-                <th scope="col">
-                    Nombre
-                </th>
-                <th scope="col">
-                    Edad
-                </th>
-                <th scope="col">
-                    Departamento
-                </th>
-                <th scope="col">
-                    Ciudad
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <%people.forEach(person=>{%>
+    <div>
+        <h2>Visualización de personas</h2>
+        <table class="table table-dark table-striped text-center">
+            <thead>
                 <tr>
-                    <td><%=person.id%></td>
-                    <td><%=person.name%></td>
-                    <td><%=person.age%></td>
-                    <td><%=person.department%></td>
-                    <td><%=person.town%></td>
+                    <th scope="col">
+                        Cedula
+                    </th>
+                    <th scope="col">
+                        Nombre
+                    </th>
+                    <th scope="col">
+                        Edad
+                    </th>
+                    <th scope="col">
+                        Departamento
+                    </th>
+                    <th scope="col">
+                        Ciudad
+                    </th>
                 </tr>
-            <%})%>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <%people.forEach(person=>{%>
+                    <tr>
+                        <td><%=person.id%></td>
+                        <td><%=person.name%></td>
+                        <td><%=person.age%></td>
+                        <td><%=person.department%></td>
+                        <td><%=person.town%></td>
+                    </tr>
+                <%})%>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
