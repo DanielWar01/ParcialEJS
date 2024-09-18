@@ -23,10 +23,53 @@ router.get('/', (req, res) => {
         departments.sort((a, b) => a.name.localeCompare(b.name));
         towns.sort((a, b) => a.name.localeCompare(b.name));
   
-        res.render('index', { title: "Pagina principal", departments: departments, towns: towns});
+        fs.readFile(path.join(__dirname, '../data/people.json'), 'utf8', (err, data3) => {
+          if (err) {
+            res.status(500).send('Error reading file');
+            return;
+          }
+      
+          let people = JSON.parse(data3);
+        
+          people.sort((a, b) => a.name.localeCompare(b.name));
+    
+          res.render('index', { title: "Pagina principal", departments: departments, towns: towns, people});
+        });
       });
     });
   });
 
+  
+  router.post('/save', (req, res) =>{
+    const {id, name, age, department, town} = req.body;
+
+    const newPerson = {id, name, age, department, town}
+
+    const filePath = path.join(__dirname, '../data/people.json');
+    fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err && err.code === 'ENOENT') {
+          fs.writeFile(filePath, JSON.stringify([newPerson], null, 2), (err) => {
+              if (err) {
+                  res.status(500).send('Error al guardar los datos');
+              } else {
+                  res.redirect('/');
+              }
+          });
+      } else if (err) {
+          res.status(500).send('Error al leer el archivo');
+      } else {
+          let people = JSON.parse(data);
+          people.push(newPerson);
+
+          fs.writeFile(filePath, JSON.stringify(people, null, 2), (err) => {
+              if (err) {
+                  res.status(500).send('Error al guardar los datos');
+              } else {
+                  res.redirect('/');
+              }
+          });
+      }
+  });
+  })
 
 module.exports = router;

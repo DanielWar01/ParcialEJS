@@ -42,5 +42,37 @@
             </form>
         </div>
     </div>
+    <table class="table table-dark table-striped text-center">
+        <thead>
+            <tr>
+                <th scope="col">
+                    Cedula
+                </th>
+                <th scope="col">
+                    Nombre
+                </th>
+                <th scope="col">
+                    Edad
+                </th>
+                <th scope="col">
+                    Departamento
+                </th>
+                <th scope="col">
+                    Ciudad
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <%people.forEach(person=>{%>
+                <tr>
+                    <td><%=person.id%></td>
+                    <td><%=person.name%></td>
+                    <td><%=person.age%></td>
+                    <td><%=person.department%></td>
+                    <td><%=person.town%></td>
+                </tr>
+            <%})%>
+        </tbody>
+    </table>
 </body>
 </html>
