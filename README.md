@@ -16,6 +16,8 @@
 ## Instrucciones de Instalación y Ejecución
 
 1. **Instalación de dependencias**  
-   Asegúrate de instalar los módulos necesarios ejecutando el siguiente comando:
+   Borrar e instalar nuevamente los modulos de node en la terminal:
    ```bash
    npm install
+2. **Agregar los datos persona**
+
